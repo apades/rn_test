@@ -1,3 +1,14 @@
 # Windows files should use crlf line endings
 # https://help.github.com/articles/dealing-with-line-endings/
 *.bat text eol=crlf
+public/* linguist-vendored
+
+*.js text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.vue text eol=lf
+*.css text eol=lf
+*.less text eol=lf
+*.json text eol=lf
+*.jsx text eol=lf
+.env.* text eol=lf

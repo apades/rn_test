@@ -1,72 +1,25 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import {
+  Button,
+  DeviceEventEmitter,
+  NativeModules,
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
   useColorScheme,
   View,
-  NativeModules,
-  DeviceEventEmitter,
 } from 'react-native'
+import fs from 'react-native-fs'
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen'
 
-const styles = StyleSheet.create({
-  sectioncontainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectiontitle: {
-    fontWeight: '600',
-    fontSize: 24,
-  },
-  sectiondescription: {
-    marginTop: 8,
-    fontWeight: '400',
-    fontSize: 18,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-})
-
-const Section: FC<{ title: string }> = ({ children, title }) => {
-  const isDarkMode = useColorScheme() === 'dark'
-  return (
-    <View style={styles.sectioncontainer}>
-      <Text
-        style={[
-          styles.sectiontitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}
-      >
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectiondescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}
-      >
-        {children}
-      </Text>
-    </View>
-  )
-}
-
 const App: FC = () => {
-  let [volume, setvolume] = useState(0)
   useEffect(() => {
     NativeModules.KeyEventLister.audioSwitch(true)
     console.log('init')
     DeviceEventEmitter.addListener('keyup', (e) => {
       if (e.keyCode === 24) {
-        // 音量增加键
+        // 音量增加键123
         console.log('up')
       }
       if (e.keyCode === 25) {
@@ -94,7 +47,20 @@ const App: FC = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}
         >
-          <Text>this is new {volume}</Text>
+          <Text>this is new 123</Text>
+          <Button
+            onPress={() => {
+              console.log(fs.ExternalDirectoryPath)
+              // let fsBase = `/storage/1401-3318`
+              // fs.appendFile(
+              //   `${fs.ExternalStorageDirectoryPath}/test.txt`,
+              //   'bbbbbbb',
+              // )
+              //   .then((res) => console.log('ok', res))
+              //   .catch((err) => console.error('err', err))
+            }}
+            title="press me"
+          ></Button>
         </View>
       </ScrollView>
     </SafeAreaView>
