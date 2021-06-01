@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, { FC, useEffect, useState } from 'react'
 import {
   SafeAreaView,
   ScrollView,
@@ -9,8 +9,8 @@ import {
   View,
   NativeModules,
   DeviceEventEmitter,
-} from 'react-native';
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+} from 'react-native'
+import { Colors, Header } from 'react-native/Libraries/NewAppScreen'
 
 const styles = StyleSheet.create({
   sectioncontainer: {
@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
-});
+})
 
-const Section: FC<{title: string}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
+const Section: FC<{ title: string }> = ({ children, title }) => {
+  const isDarkMode = useColorScheme() === 'dark'
   return (
     <View style={styles.sectioncontainer}>
       <Text
@@ -41,7 +41,8 @@ const Section: FC<{title: string}> = ({children, title}) => {
           {
             color: isDarkMode ? Colors.white : Colors.black,
           },
-        ]}>
+        ]}
+      >
         {title}
       </Text>
       <Text
@@ -50,51 +51,54 @@ const Section: FC<{title: string}> = ({children, title}) => {
           {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
-        ]}>
+        ]}
+      >
         {children}
       </Text>
     </View>
-  );
-};
+  )
+}
 
 const App: FC = () => {
-  let [volume, setvolume] = useState(0);
+  let [volume, setvolume] = useState(0)
   useEffect(() => {
-    NativeModules.KeyEventLister.audioSwitch(true);
-    console.log('init');
-    DeviceEventEmitter.addListener('keyup', e => {
+    NativeModules.KeyEventLister.audioSwitch(true)
+    console.log('init')
+    DeviceEventEmitter.addListener('keyup', (e) => {
       if (e.keyCode === 24) {
         // 音量增加键
-        console.log('up');
+        console.log('up')
       }
       if (e.keyCode === 25) {
-        console.log('down');
+        console.log('down')
       }
-      console.log('e.keycod', e.keyCode);
-    });
-  }, []);
-  const isDarkMode = useColorScheme() === 'dark';
+      console.log('e.keycod', e.keyCode)
+    })
+  }, [])
+  const isDarkMode = useColorScheme() === 'dark'
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  }
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+        style={backgroundStyle}
+      >
         <Header />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+          }}
+        >
           <Text>this is new {volume}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default App;
+export default App
