@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "dev": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "lint": "eslint ."
@@ -21,8 +21,5 @@
     "@types/react-native": "^0.64.8",
     "eslint-config-apadconfig": "^1.0.4",
     "metro-react-native-babel-preset": "^0.64.0"
-  },
-  "jest": {
-    "preset": "react-native"
   }
 }
