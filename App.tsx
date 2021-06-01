@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -7,15 +7,10 @@ import {
   Text,
   useColorScheme,
   View,
+  NativeModules,
+  DeviceEventEmitter,
 } from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 
 const styles = StyleSheet.create({
   sectioncontainer: {
@@ -63,6 +58,21 @@ const Section: FC<{title: string}> = ({children, title}) => {
 };
 
 const App: FC = () => {
+  let [volume, setvolume] = useState(0);
+  useEffect(() => {
+    NativeModules.KeyEventLister.audioSwitch(true);
+    console.log('init');
+    DeviceEventEmitter.addListener('keyup', e => {
+      if (e.keyCode === 24) {
+        // 音量增加键
+        console.log('up');
+      }
+      if (e.keyCode === 25) {
+        console.log('down');
+      }
+      console.log('e.keycod', e.keyCode);
+    });
+  }, []);
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -80,20 +90,7 @@ const App: FC = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <Text>this is new {volume}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
