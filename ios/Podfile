@@ -16,6 +16,12 @@ target 'AwesomeProject' do
 
   pod 'RNFS', :path => '../node_modules/react-native-fs'
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'react-native-cookies', :path => '../node_modules/@react-native-cookies/cookies'
+
   target 'AwesomeProjectTests' do
     inherit! :complete
     # Pods for testing
