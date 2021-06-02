@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "react-native run-android",
+    "dev": "cross-env NSFW=false react-native run-android",
+    "dev_a": "bash run.sh",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "clean":"cd android && .\\gradlew.bat clean"
   },
   "dependencies": {
     "@react-native-cookies/cookies": "^6.0.7",
@@ -28,6 +30,8 @@
     "@types/react": "^17.0.8",
     "@types/react-native": "^0.64.8",
     "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
+    "cross-env": "^7.0.3",
     "eslint-config-apadconfig": "^1.0.4",
     "metro-react-native-babel-preset": "^0.64.0"
   }

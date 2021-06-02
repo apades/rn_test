@@ -12,7 +12,6 @@ import {
   View,
 } from 'react-native'
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen'
-import { Link } from '@react-navigation/native'
 import { useNav } from '@r/hook'
 
 let Page_Home: FC = (props) => {
@@ -31,6 +30,7 @@ let Page_Home: FC = (props) => {
       }
       console.log('e.keycod', e.keyCode)
     })
+    console.log(process.env.LOCALIP)
   }, [])
   const isDarkMode = useColorScheme() === 'dark'
 
@@ -50,7 +50,7 @@ let Page_Home: FC = (props) => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}
         >
-          <Text>this is new 123</Text>
+          <Text>this is new hha {process.env.LOCALIP}</Text>
           <Button
             onPress={() => {
               // console.log(fs.ExternalDirectoryPath)
